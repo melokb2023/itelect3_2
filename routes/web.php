@@ -32,9 +32,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //- Going to Students/Index Files
-Route::get('/students', function () {
-    return view('students.index');
-})->middleware(['auth', 'verified'])->name('students');
+//Route::get('/students', function () {
+   // return view('students.index');
+//})->middleware(['auth', 'verified'])->name('students');
 
 //Navigate to Form Add Student
 Route::get('/students/add', function () {
@@ -46,7 +46,15 @@ Route::post('/students/add',[StudentInfoController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('student-store');
 
+//- Get All Data From the Student Info Table
+Route::get('/students', [StudentInfoController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students');
 
+//View Student Info
+Route::get('/students/{stuno}', [StudentInfoController::class, 'show']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students-show');
 
 
 

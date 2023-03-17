@@ -10,7 +10,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method = "POST" action="{{ route('student-store') }}">
+                   <h6>Errors Encountered</h6>
+                    @if($errors)
+                       <ul>
+                          @foreach($errors->all() as $error)
+                         <li>{{$error}}</li>
+                    @endforeach
+                         </ul>
+                    @endif
+                <form method = "POST" action="{{ route('student-store') }}">
                         @csrf
                        <div class="flex-items-center"><label for="ID Number">ID Number</label>
                     <div>
@@ -60,7 +68,7 @@
 </select>
                     </div>
 </div>
-<button type ="submit"> Submit Info </button>
+             <button type ="submit"> Submit Info </button>
                    </form>
                 </div>
             </div>
