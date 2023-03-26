@@ -16,7 +16,8 @@ class StudentInfoController extends Controller
          // 
          
     {
-       
+       $studentinfo = StudentInfo:: all();
+       return view('students.index' , compact('studentinfo'));
     }
 
 
@@ -35,7 +36,18 @@ class StudentInfoController extends Controller
     public function store(Request $request)
     {
         //
-       
+    $validateData =$request->validate([
+        'xidNo' => ['required', 'max:8'],
+        'xfirstName' =>['required', 'max:20'],
+        'xmiddleName'=>['max:15'],
+        'xlastName' =>['required', 'max:20'],
+        'xsuffix' =>['max:5'],
+        'xcourse' =>['required','max:15'],
+        'xyear' =>['required'],
+        'xbirthDate' =>['required','date'],
+        'xgender' =>['required']
+    ]);
+    
     $studentinfo = new StudentInfo();
     $studentinfo ->idNo=$request->xidNo;
     $studentinfo ->firstName=$request->xfirstName;
@@ -56,7 +68,8 @@ class StudentInfoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $studentinfo = StudentInfo::where('sno', $id)->get();
+        return view('students.show', compact('studentinfo'));
     }
 
     /**
