@@ -16,14 +16,8 @@ class EnrolledSubjectsController extends Controller
     
     {
         //
-        $enrolledsubjects = new EnrolledSubjects;
-        $enrolledsubjects->subjectCode = "IT Elect 3";
-        $enrolledsubjects->description = "Web System and Technologies";
-        $enrolledsubjects->units = 3;
-        $enrolledsubjects->schedule = "TF 1:00 to 3:30 PM";
-        $enrolledsubjects->save();
-
-       echo "Enrolled subjects data successfully saved in the database";
+        $enrolledsubjects = EnrolledSubjects:: all();
+        return view('enrolledsubjects.index' , compact('enrolledsubjects'));
     }
 
     /**
@@ -39,6 +33,20 @@ class EnrolledSubjectsController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData =$request->validate([
+            'xsubjectCode' => ['required', 'max:12'],
+            'xdescription' =>['required', 'max:100'],
+            'xunits'=>['required'],
+            'xschedule' =>['required', 'max:30'],
+        ]);
+        
+        $enrolledsubjects= new EnrolledSubjects();
+        $enrolledsubjects ->subjectCode=$request->xsubjectCode;
+        $enrolledsubjects ->description=$request->xdescription;
+        $enrolledsubjects ->units=$request->xunits;
+        $enrolledsubjects ->schedule=$request->xschedule;
+        $enrolledsubjects ->save();
+        return redirect()->route('enrolledsubjects');
     }
 
     /**

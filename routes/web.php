@@ -31,10 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//- Going to Students/Index Files
-//Route::get('/students', function () {
-   // return view('students.index');
-//})->middleware(['auth', 'verified'])->name('students');
+//STUDENT INFO
 
 //Navigate to Form Add Student
 Route::get('/students/add', function () {
@@ -73,6 +70,47 @@ Route::get('/students/edit/{stuno}', [StudentInfoController::class, 'edit'])
 Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('students-update');
+
+//ENROLLED SUBJECTS
+
+   //Navigate to Form Add Enrolled Subjects
+   Route::get('/enrolledsubjects/add', function () {
+       return view('enrolledsubjects.add');
+   })->middleware(['auth', 'verified'])->name('add-enrolledsubjects');
+   
+   //Store Student info to create function under StudentInfoController
+   Route::post('/enrolledsubjects/add',[StudentInfoController::class, 'store'] )
+   ->middleware(['auth', 'verified'])
+   ->name('enrolledsubjects-store');
+   
+   //- Get All Data From the Student Info Table
+   Route::get('/enrolledsubjects', [StudentInfoController::class, 'index']) 
+      ->middleware(['auth', 'verified'])
+      ->name('enrolledsubjects');
+   
+   //View Student Info
+   Route::get('/enrolledsubjects/{esno}', [StudentInfoController::class, 'show']) 
+      ->middleware(['auth', 'verified'])
+      ->name('enrolledsubjects-show');
+   
+   //Delete Enrolled Subjects
+   Route::delete('/enrolledsubjects/delete/{esno}', [StudentInfoController::class, 'destroy']) 
+      ->middleware(['auth', 'verified'])
+      ->name('enrolledsubjects-delete');
+   
+   //Transfer Record to Edit Form
+   Route::get('/enrolledsubjects/edit/{esno}', [StudentInfoController::class, 'edit']) 
+      ->middleware(['auth', 'verified'])
+      ->name('enrolledsubjects-edit');
+   
+   //Save The Updated Data
+   Route::patch('/enrolledsubjects/update/{esno}', [StudentInfoController::class, 'update']) 
+      ->middleware(['auth', 'verified'])
+      ->name('enrolledsubjects-update');
+   
+   
+   
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
