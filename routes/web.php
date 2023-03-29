@@ -56,7 +56,23 @@ Route::get('/students/{stuno}', [StudentInfoController::class, 'show'])
    ->middleware(['auth', 'verified'])
    ->name('students-show');
 
+Route::get('/students/{stuno}', [StudentInfoController::class, 'show']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students-show');
 
+Route::delete('/students/delete/{stuno}', [StudentInfoController::class, 'destroy']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students-delete');
+
+//Transfer Record to Edit Form
+Route::get('/students/edit/{stuno}', [StudentInfoController::class, 'edit']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students-edit');
+
+//Save The Updated Data
+Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update']) 
+   ->middleware(['auth', 'verified'])
+   ->name('students-update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
