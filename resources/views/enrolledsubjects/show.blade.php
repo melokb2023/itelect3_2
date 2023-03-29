@@ -13,26 +13,23 @@
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
-                        <th>ID No.</th>
-                        <th>Full Name</th>
-                        <th>Course</th>
-                        <th>Birth Date</th>
-                        <th>Gender</th>
-</tr>
+                        <th>Subject Code</th>
+                        <th>Description</th>
+                        <th>Units</th>
+                        <th>Schedule</th>
                     <tbody>
-                    @foreach($studentinfo as $stuinfo)
+                    @foreach($enrolledsubjects as $ensubjects)
                        <tr>
-                        <td>{{$stuinfo->idNo}}</td>
-                        <td>{{$stuinfo->firstName }} {{$stuinfo->middleName }} {{$stuinfo->lastName }}</td>
-                        <td>{{$stuinfo->course }} - {{$stuinfo->year }}</td>
-                        <td>{{date("F j, Y" ,strtotime($stuinfo->birthDate))}}</td>
-                        <td>{{$stuinfo->gender}}</td>
+                        <td>{{$ensubjects->subjectCode}}</td>
+                        <td>{{$ensubjects->description }}</td>
+                        <td>{{$ensubjects->units }} </td>
+                        <td>{{$ensubjects->schedule }}</td>
                     </tr>
                         @endforeach
                    </tbody>
 
                     </table>
-                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('students')}}"> Back </a>
+                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('enrolledsubjects')}}"> Back </a>
                     
                 </div>
             </div>
