@@ -108,6 +108,44 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
       ->middleware(['auth', 'verified'])
       ->name('enrolledsubjects-update');
    
+   //GRADES
+   
+   //Navigate to Form Add Enrolled Subjects
+   Route::get('/grades/add', function () {
+      return view('grades.add');
+  })->middleware(['auth', 'verified'])->name('add-grades');
+  
+  //Store Student info to create function under StudentInfoController
+  Route::post('/grades/add',[GradesController::class, 'store'] )
+  ->middleware(['auth', 'verified'])
+  ->name('grades-store');
+  
+  //- Get All Data From the Student Info Table
+  Route::get('/grades', [GradesController::class, 'index']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades');
+  
+  //View Student Info
+  Route::get('/grades/{esNo}', [GradesController::class, 'show']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades-show');
+  
+  //Delete Enrolled Subjects
+  Route::delete('/grades/delete/{esNo}', [GradesController::class, 'destroy']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades-delete');
+  
+  //Transfer Record to Edit Form
+  Route::get('/grades/edit/{esNo}', [GradesController::class, 'edit']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades-edit');
+  
+  //Save The Updated Data
+  Route::patch('/grades/update/{esNo}', [GradesController::class, 'update']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades-update');
+  
+  
    
    
 
