@@ -15,8 +15,8 @@ class BalancesController extends Controller
      */
     public function index()
     {
-        $balances = Balances::join('studentinfo', 'balances.sNo', '=', 'studentinfo.sNo')->get();
-        //$balances = Balances:: all();
+        //$balances = Balances::join('studentinfo', 'balances.sNo', '=', 'studentinfo.sNo')->get();
+        $balances = Balances:: all();
         return view('balances.index' , compact('balances'));
     }
 
@@ -56,6 +56,7 @@ class BalancesController extends Controller
      */
     public function show(string $id)
     {
+       // $balances = Balances::join('studentinfo', 'balances.sNo', '=', 'studentinfo.sNo')->get();
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.show', compact('balances'));
     }
@@ -65,6 +66,7 @@ class BalancesController extends Controller
      */
     public function edit(string $id)
     {
+        
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.edit', compact('balances'));
     }
