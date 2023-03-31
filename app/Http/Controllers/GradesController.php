@@ -56,9 +56,9 @@ class GradesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $integer)
     {
-        $grades = Grades::where('esNo', $id)->get();
+        $grades = Grades::where('esNo', $integer)->get();
         return view('grades.show', compact('grades'));
     }
 
@@ -67,7 +67,8 @@ class GradesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $grades = Grades::where('esNo', $id)->get();
+        return view('grades.edit', compact('grades'));
     }
 
     /**
