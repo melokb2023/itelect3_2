@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Balances extends Model
 {
     use HasFactory;
+
+    protected $table= 'balances';
+    
+    protected $fillable = [
+         'sNo',
+         'amountDue',
+         'totalBalance',
+         'notes',
+    ];
 }
