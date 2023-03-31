@@ -27,7 +27,7 @@
                 </div>
                     <div class="flex-items-center"><label for="Amount Due">Amount Due</label>
                     <div>
-                    <input type="number" precision="8" scale="2" value="{{$b->amountDue}}"/>
+                    <input type="number" precision="8" scale="2" name="amountDue" value="{{$b->amountDue}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Total Balance">Total Balance</label>
