@@ -53,10 +53,6 @@ Route::get('/students/{stuno}', [StudentInfoController::class, 'show'])
    ->middleware(['auth', 'verified'])
    ->name('students-show');
 
-Route::get('/students/{stuno}', [StudentInfoController::class, 'show']) 
-   ->middleware(['auth', 'verified'])
-   ->name('students-show');
-
 Route::delete('/students/delete/{stuno}', [StudentInfoController::class, 'destroy']) 
    ->middleware(['auth', 'verified'])
    ->name('students-delete');

@@ -18,8 +18,9 @@
                          </ul>
                     @endif
                     @foreach($balances as $b)
-                <form method = "POST" action="{{ route('balances-store') }}">
+                <form method = "POST" action="{{ route('balances-update',['bNo' => $b->bNo]) }}">
                         @csrf
+                        @method('patch')
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
                     <div>
                     <input type="text" name="xsNo" value="{{$b->sNo}}"/>
@@ -27,12 +28,12 @@
                 </div>
                     <div class="flex-items-center"><label for="Amount Due">Amount Due</label>
                     <div>
-                    <input type="number" precision="8" scale="2" name="amountDue" value="{{$b->amountDue}}"/>
+                    <input type="number" precision="8" scale="2" name="xamountDue" value="{{$b->amountDue}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Total Balance">Total Balance</label>
                     <div>
-                    <input type="text" precision="8" scale="2" name="totalBalance" value="{{$b->totalBalance}}"/>
+                    <input type="text" precision="8" scale="2" name="xtotalBalance" value="{{$b->totalBalance}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Notes">Notes</label>
@@ -43,6 +44,7 @@
   
              <button type ="submit"> Submit Info </button>
                    </form>
+                   @endforeach
                 </div>
             </div>
         </div>

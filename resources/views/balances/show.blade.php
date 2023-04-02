@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <h6>List of Grades</h6>
+                    <h6>List of Balances</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
                         <th>Student Number</th>
@@ -18,7 +18,7 @@
                         <th>Total Balance</th>
                         <th>Notes</th>
                     <tbody>
-                    @foreach($grades as $g)
+                    @foreach($balances as $b)
                        <tr>
                        <td>{{$b->sNo }} </td>
                         <td>{{$b->amountDue }}</td>

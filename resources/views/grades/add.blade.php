@@ -31,7 +31,7 @@
 </div>
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
                     <div>
-                    <input type="text" name="sNo" value="{{old('sNo')}}"/>
+                    <input type="text" name="xsNo" value="{{old('xsNo')}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Prelim">Prelim</label>

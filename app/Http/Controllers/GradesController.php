@@ -14,6 +14,7 @@ class GradesController extends Controller
      */
     public function index()
     {
+
         $grades = Grades:: all();
         return view('grades.index' , compact('grades'));
     }
@@ -58,7 +59,7 @@ class GradesController extends Controller
      */
     public function show(string $id)
     {
-        $grades = Grades::where('esNo', $id)->get();
+        $grades = Grades::join('enrolledsubjects', 'grades.esNo', '=', 'enrolledsubjects.esNo')->get();
         return view('grades.show', compact('grades'));
     }
 
