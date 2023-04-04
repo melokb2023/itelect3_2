@@ -33,7 +33,11 @@
 </div>
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
                     <div>
-                    <input type="text" name="xsNo" value="{{$g->sNo}}"/>
+                    <select name="xsno">
+                            @foreach($studentinfo as $stuinfo)
+                            <option value="{{$stuinfo->sno }}">{{$stuinfo ->idNo}} -- {{$stuinfo->lastName}},{{$stuinfo->firstName}},{{$stuinfo->middleName}}</option>
+                            @endforeach
+                        </select>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Prelim">Prelim</label>

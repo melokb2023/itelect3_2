@@ -17,10 +17,6 @@ class BalancesController extends Controller
     public function index()
     {
         $balances = new Balances;
-       // $studentinfo->course = "BSIT";
-       // $studentinfo->year = 3;
-        //$studentinfo->birthDate = "2001-11-27";
-       // $studentinfo->gender = "Male";
         
        // $balances->sno = 5;
        // $balances->amountDue=250.45;
@@ -73,7 +69,7 @@ class BalancesController extends Controller
      */
     public function show(string $id)
     {
-        $balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
+        //$balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.show', compact('balances'));
     }
@@ -94,7 +90,7 @@ class BalancesController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xsNo' => ['required'],
+            'xsno' => ['required'],
             'xamountDue' =>['required', 'precision:8','scale:2'],
             'xtotalBalance'=>['required', 'precision:8','scale:2'],
             'xnotes' =>['required'],
@@ -102,14 +98,14 @@ class BalancesController extends Controller
 
         $balances = Balances::where('bNo', $id)
         ->update(
-             ['sNo' => $request->xsNo,
+             ['sno' => $request->xsno,
              'amountDue'=> $request->xamountDue,
              'totalBalance'=> $request->xtotalBalance,
              'notes'=> $request->xnotes,
              ]);
           return redirect()->route('balances');
 
-
+         
     }
 
     /**
@@ -123,7 +119,9 @@ class BalancesController extends Controller
         return redirect()->route('balances');
     }
     public function getStudentInfo(){
-        $studentinfo = StudentInfo::all();
-        return view('balances.add',compact('studentinfo'));
+        
+       $studentinfo = StudentInfo::all();
+       return view('balances.add',compact('studentinfo'));
+
     }
 }

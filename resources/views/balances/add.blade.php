@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Grades Information') }}
+            {{ __('Balances Information') }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                         @csrf
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
                     <div>
-                        <select name="xstuno">
+                        <select name="xsno">
                             @foreach($studentinfo as $stuinfo)
                             <option value="{{$stuinfo->sno }}">{{$stuinfo ->idNo}} -- {{$stuinfo->lastName}},{{$stuinfo->firstName}},{{$stuinfo->middleName}}</option>
                             @endforeach
