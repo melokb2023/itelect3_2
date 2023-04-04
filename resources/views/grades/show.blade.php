@@ -13,7 +13,6 @@
                     <h6>List of Grades</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
-                      <th>Grade Number</th>
                         <th>Enrolled Subjects Number</th>
                         <th>Student Number</th>
                         <th>Prelim</th>
@@ -23,7 +22,6 @@
                     <tbody>
                     @foreach($grades as $g)
                        <tr>
-                       <td>{{$g->gNo}}</td>
                         <td>{{$g->esNo }}</td>
                         <td>{{$g->sNo }} </td>
                         <td>{{$g->prelim }}</td>

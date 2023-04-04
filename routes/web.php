@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//STUDENT INFO
+//////////////////////////////////////////////////////STUDENT INFO
 
 //Navigate to Form Add Student
 Route::get('/students/add', function () {
@@ -67,7 +67,7 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
    ->middleware(['auth', 'verified'])
    ->name('students-update');
 
-//ENROLLED SUBJECTS
+///////////////////////////////////////////////////////////////////////////ENROLLED SUBJECTS
 
    //Navigate to Form Add Enrolled Subjects
    Route::get('/enrolledsubjects/add', function () {
@@ -84,7 +84,7 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
       ->middleware(['auth', 'verified'])
       ->name('enrolledsubjects');
    
-   //View Student Info
+   //View Enrolled Subjects
    Route::get('/enrolledsubjects/{esNo}', [EnrolledSubjectsController::class, 'show']) 
       ->middleware(['auth', 'verified'])
       ->name('enrolledsubjects-show');
@@ -104,90 +104,79 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
       ->middleware(['auth', 'verified'])
       ->name('enrolledsubjects-update');
    
-   //GRADES
+   ////////////////////////////////////////////////////////////////////////////////////////GRADES
    
-   //Navigate to Form Add Enrolled Subjects
-  Route::get('/grades/add', function () {
-  return view('grades.add');
-  })->middleware(['auth', 'verified'])->name('add-grades');
   
-  //Store Student info to create function under StudentInfoController
+   //- Present the Grades
+  Route::get('/grades', [GradesController::class, 'index']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades');
+  //Get the Student Info from the Balances
+  Route::get('/balances/add', [BalancesController::class, 'getStudentInfo'])
+     ->middleware(['auth', 'verified'])
+     ->name('add-grades');
+  //Get Enrolled Subjects Data from the Grades
+  Route::get('/grades/add', [GradesController::class, 'getEnrolledSubjects'])
+     ->middleware(['auth', 'verified'])
+     ->name('add-grades');
+//Store Grades
   Route::post('/grades/add',[GradesController::class, 'store'] )
   ->middleware(['auth', 'verified'])
   ->name('grades-store');
   
-  //- Get All Data From the Student Info Table
-  Route::get('/grades', [GradesController::class, 'index']) 
-     ->middleware(['auth', 'verified'])
-     ->name('grades');
-  
-  //View Student Info
-  Route::get('/grades/{esNo}', [GradesController::class, 'show']) 
+  //View Grades
+  Route::get('/grades/{grade}', [GradesController::class, 'show']) 
      ->middleware(['auth', 'verified'])
      ->name('grades-show');
   
-  //Delete Enrolled Subjects
-  Route::delete('/grades/delete/{esNo}', [GradesController::class, 'destroy']) 
-     ->middleware(['auth', 'verified'])
-     ->name('grades-delete');
-  
-  //Transfer Record to Edit Form
-  Route::get('/grades/edit/{esNo}', [GradesController::class, 'getStudentInfo','edit']) 
+  //Edit Grades
+  Route::get('/grades/edit/{grade}', [GradesController::class, 'edit']) 
      ->middleware(['auth', 'verified'])
      ->name('grades-edit');
   
-  //Save The Updated Data
-  Route::patch('/grades/update/{esNo}', [GradesController::class, 'getStudentInfo','update']) 
+  //Delete Grades
+  Route::delete('/grades/delete/{grade}', [GradesController::class, 'destroy']) 
+     ->middleware(['auth', 'verified'])
+     ->name('grades-delete');
+  
+ //Save The Updated Grades
+  Route::patch('/grades/update/{grade}', [GradesController::class, 'update']) 
      ->middleware(['auth', 'verified'])
      ->name('grades-update');
 
-  Route::get('/grades/add', [GradesController::class, 'getStudentInfo','add']) 
-    ->middleware(['auth', 'verified'])
-    ->name('add-grades');
-  
+ 
    //BALANCES
 
-   //Navigate to Form Add Enrolled Subjects
-  // Route::get('/balances/add', function () {
-      //return view('balances.add');
- // })->middleware(['auth', 'verified'])->name('add-balances');
   
-  //Store Student info to create function under StudentInfoController
-  Route::post('/balances/store',[BalancesController::class, 'store'] )
-  ->middleware(['auth', 'verified'])
-  ->name('balances-store');
   
-  //- Get All Data From the Student Info Table
-  Route::get('/balances', [BalancesController::class, 'index']) 
-     ->middleware(['auth', 'verified'])
-     ->name('balances');
+   Route::get('/balances', [BalancesController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('balances');
    
-   Route::get('/balances/add', [BalancesController::class, 'getStudentInfo','add']) 
+   //Getting the Student Info
+   Route::get('/balances/add', [BalancesController::class, 'getStudentInfo'])
      ->middleware(['auth', 'verified'])
      ->name('add-balance');
-  
-  //View Student Info
-  Route::get('/balances/{bNo}', [BalancesController::class, 'show']) 
-     ->middleware(['auth', 'verified'])
-     ->name('balances-show');
-  
-  //Delete Enrolled Subjects
-  Route::delete('/balances/delete/{bNo}', [BalancesController::class, 'destroy']) 
-     ->middleware(['auth', 'verified'])
-     ->name('balances-delete');
-  
-  //Transfer Record to Edit Form
-  Route::get('/balances/edit/{bNo}', [BalancesController::class, 'getStudentInfo','edit']) 
-     ->middleware(['auth', 'verified'])
-     ->name('balances-edit');
-  
-  //Save The Updated Data
-  Route::patch('/balances/update/{bNo}', [BalancesController::class, 'getStudentInfo','update']) 
-     ->middleware(['auth', 'verified'])
-     ->name('balances-update');
-  
-  
-   
+   //Adding Balance
+   Route::post('/balances/store', [BalancesController::class, 'store'])
+      ->middleware(['auth', 'verified'])
+      ->name('balances-store');
+   //Show The Balance
+   Route::get('/balances/{bNo}', [BalancesController::class, 'show'])
+      ->middleware(['auth', 'verified'])
+      ->name('balances-show');
+   //Delete the Balance
+   Route::delete('/balances/delete/{bNo}', [BalancesController::class, 'destroy'])
+      ->middleware(['auth', 'verified'])
+      ->name('balances-delete');
+   //Edit the Balance
+   Route::get('/balances/edit/{bNo}', [BalancesController::class, 'edit'])
+      ->middleware(['auth', 'verified'])
+      ->name('balances-edit');
+   // Update Balance
+   Route::patch('/balances/update/{bNo}', [BalancesController::class, 'update'])
+       ->middleware(['auth', 'verified'])
+       ->name('balances-update');
    
 
 

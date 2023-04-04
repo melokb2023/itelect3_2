@@ -7,8 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white dark:bg-yellow-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-black-900 dark:text-black-100">
                    <h6>Errors Encountered</h6>
                     @if($errors)
                        <ul>
@@ -19,7 +19,7 @@
                     @endif
                 <form method = "POST" action="{{ route('balances-store') }}">
                         @csrf
-                       <div class="flex-items-center"><label for="Student Number">Student Number</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Student Number">Student Number</label>
                     <div>
                         <select name="xsno">
                             @foreach($studentinfo as $stuinfo)
@@ -28,23 +28,23 @@
                         </select>
                     </div>
                 </div>
-                    <div class="flex-items-center"><label for="Amount Due">Amount Due</label>
+                    <div class="flex-items-center" style="text-align:center"><label for="Amount Due">Amount Due</label>
                     <div>
-                    <input type="number" precision="8" scale="2" name="xamountDue" value="{{old('xamountDue')}}"/>
+                    <input type="text" name="xamountDue" value="{{old('xamountDue')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Total Balance">Total Balance</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Total Balance">Total Balance</label>
                     <div>
-                    <input type="text" precision="8" scale="2" name="xtotalBalance" value="{{old('xtotalBalance')}}"/>
+                    <input type="text" name="xtotalBalance" value="{{old('xtotalBalance')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Notes">Notes</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Notes">Notes</label>
                     <div>
-                    <input type="text"  name="xnotes" value="{{old('xnotes')}}"/>
+                    <input type="text" name="xnotes" value="{{old('xnotes')}}"/>
                     </div>
 </div>
   
-             <button type ="submit"> Submit Info </button>
+             <button type ="submit" class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded"> Submit Info </button>
                    </form>
                 </div>
             </div>

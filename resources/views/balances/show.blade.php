@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Grades Information') }}
+            {{ __('Balances Information') }}
         </h2>
     </x-slot>
 
@@ -21,8 +21,8 @@
                     @foreach($balances as $b)
                        <tr>
                        <td>{{$b->sNo }} </td>
-                        <td>{{$b->amountDue }}</td>
-                        <td>{{$b->totalBalance }} </td>
+                       <td>{{ number_format($b->amountDue,2) }}</td>
+                        <td>{{ number_format($b->totalBalance,2) }}</td>
                         <td>{{$b->notes }}</td>
                     </tr>
                         @endforeach

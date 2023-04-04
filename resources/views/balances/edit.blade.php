@@ -7,8 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white dark:bg-red-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-black-900 dark:text-black-100">
                    <h6>Errors Encountered</h6>
                     @if($errors)
                        <ul>
@@ -21,32 +21,23 @@
                 <form method = "POST" action="{{ route('balances-update',['bNo' => $b->bNo]) }}">
                         @csrf
                         @method('patch')
-                       <div class="flex-items-center"><label for="Student Number">Student Number</label>
+                    <div class="flex-items-center" style="text-align:center"><label for="Amount Due">Amount Due</label>
                     <div>
-                    <select name="xsno">
-                            @foreach($studentinfo as $stuinfo)
-                            <option value="{{$stuinfo->sno }}">{{$stuinfo ->idNo}} -- {{$stuinfo->lastName}},{{$stuinfo->firstName}},{{$stuinfo->middleName}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                    <div class="flex-items-center"><label for="Amount Due">Amount Due</label>
-                    <div>
-                    <input type="number" precision="8" scale="2" name="xamountDue" value="{{$b->amountDue}}"/>
+                    <input type="text"  name="xamountDue" value="{{$b->amountDue}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Total Balance">Total Balance</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Total Balance">Total Balance</label>
                     <div>
-                    <input type="text" precision="8" scale="2" name="xtotalBalance" value="{{$b->totalBalance}}"/>
+                    <input type="text" name="xtotalBalance" value="{{$b->totalBalance}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Notes">Notes</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Notes">Notes</label>
                     <div>
                     <input type="text"  name="xnotes" value="{{$b->notes}}"/>
                     </div>
 </div>
   
-             <button type ="submit"> Submit Info </button>
+             <button type ="submit" class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded"> Submit Info </button>
                    </form>
                    @endforeach
                 </div>

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
-            $table->integer('gNo');
+            $table->id('gNo');
             $table->unsignedBigInteger('esNo');
             $table->unsignedBigInteger('sNo');
             $table->decimal('prelim', $precision = 3, $scale = 2);

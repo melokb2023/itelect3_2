@@ -12,7 +12,6 @@ class Grades extends Model
     protected $table= 'grades';
     
     protected $fillable = [
-         'gNo',
          'esNo',
          'sNo',
          'prelim',

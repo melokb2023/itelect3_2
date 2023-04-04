@@ -7,12 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-orange-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                 <a class="mt-4 bg-teal-200 text-black font-bold py-2 px-4 rounded" href="{{ route('add-enrolledsubjects')}}">Go To Enrolled Subjects Creation</a>
                     <h6>Enrolled Subjects</h6>
-                    <table class="border-separate border-spacing-5">
+                    <table class="border-separate border-spacing-5" bgcolor="green">
                       <tr>
                         <th>Subject Code</th>
                         <th>Description</th>

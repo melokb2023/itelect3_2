@@ -8,9 +8,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                   <h6>Errors Encountered</h6>
+            <div class="bg-white dark:bg-blue-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-black-900 dark:text-black-100">
+                   <h6 style="text-align:center">Errors Encountered</h6>
                     @if($errors)
                        <ul>
                           @foreach($errors->all() as $error)
@@ -20,55 +20,55 @@
                     @endif
                 <form method = "POST" action="{{ route('student-store') }}">
                         @csrf
-                       <div class="flex-items-center"><label for="ID Number">ID Number</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="ID Number">ID Number</label>
                     <div>
                         <input type="text" name="xidNo" value="{{old('xidNo')}}"/>
                     </div>
                 </div>
-                    <div class="flex-items-center"><label for="First Name">First Name</label>
+                    <div class="flex-items-center" style="text-align:center"><label for="First Name">First Name</label>
                     <div>
                     <input type="text" name="xfirstName" value="{{old('xfirstName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Middle Name">Middle Name</label>
                     <div>
                     <input type="text" name="xmiddleName" value="{{old('xmiddleName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Last Name">Last Name</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Last Name">Last Name</label>
                     <div>
                     <input type="text" name="xlastName" value="{{old('xlastName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Suffix">Suffix</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Suffix">Suffix</label>
                     <div>
                     <input type="text" name="xsuffix" value="{{old('xsuffix')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Course">Course</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Course">Course</label>
                     <div> 
                     <input type="text" name="xcourse" value="{{old('xcourse')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Year">Year</label>
+                       <div class="flex-items-center" style="text-align:center"><label for="Year">Year</label>
                     <div>
                     <input type="number" min="1" max="4" name="xyear" value="{{old('xyear')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="birthDate"></label>
+                       <div class="flex-items-center" style="text-align:center"><label for="birthDate"></label>
                     <div>
                     <input type="date" name="xbirthDate" value="{{old('xbirthDate')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="gender"></label>
+                       <div class="flex-items-center" style="text-align:center"><label for="gender"></label>
                     <div>
-                    <select name="xgender">
+                    <select name="xgender" style="text-align:center">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
 </select>
                     </div>
 </div>
-             <button type ="submit"> Submit Info </button>
+             <button type ="submit" class="mt-4 bg-violet-200 text-black font-bold py-2 px-4 rounded" style="text-align:center"> Submit Info </button>
                    </form>
                 </div>
             </div>

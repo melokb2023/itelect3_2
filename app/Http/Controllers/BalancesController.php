@@ -2,35 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\Balances;
-use App\Models\StudentInfo;
-
+use App\Models\studentinfo;
 class BalancesController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $balances = new Balances;
-        
-       // $balances->sno = 5;
-       // $balances->amountDue=250.45;
-       // $balances->totalBalance=0.00;
-        //$balances->notes='Paid';
-        //$balances->save();
-       
-       //  echo "Student information successfully saved in the database";
-
-       
-       
-        //$balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
-        $balances = Balances:: all();
-        return view('balances.index' , compact('balances'));
+        $balances = Balances:: join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
+        return view('balances.index', compact('balances'));
     }
 
     /**
@@ -47,21 +30,13 @@ class BalancesController extends Controller
     public function store(Request $request)
     {
         //
-        $validateData =$request->validate([
-            'xsno' =>['required'],
-            'xamountDue' =>['required', 'precision:8','scale:2'],
-            'xtotalBalance'=>['required', 'precision:8','scale:2'],
-            'xnotes' =>['required'],
-        ]);
-        
         $balances = new Balances();
-        $balances->sno=$request->xsno;
-        $balances->amountDue=$request->xamountDue;
-        $balances->totalBalance=$request->xtotalBalance;
-        $balances->notes=$request->xnotes;
-        $balances ->save();
+        $balances->sno = $request->xsno;
+        $balances->amountDue = $request->xamountDue;
+        $balances->totalBalance = $request->xtotalBalance;
+        $balances->notes = $request->xnotes;
+        $balances->save();
         return redirect()->route('balances');
-        
     }
 
     /**
@@ -69,7 +44,7 @@ class BalancesController extends Controller
      */
     public function show(string $id)
     {
-        //$balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
+        //
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.show', compact('balances'));
     }
@@ -79,7 +54,7 @@ class BalancesController extends Controller
      */
     public function edit(string $id)
     {
-        
+        //
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.edit', compact('balances'));
     }
@@ -89,23 +64,14 @@ class BalancesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateData =$request->validate([
-            'xsno' => ['required'],
-            'xamountDue' =>['required', 'precision:8','scale:2'],
-            'xtotalBalance'=>['required', 'precision:8','scale:2'],
-            'xnotes' =>['required'],
-        ]);
-
+        //
         $balances = Balances::where('bNo', $id)
         ->update(
-             ['sno' => $request->xsno,
-             'amountDue'=> $request->xamountDue,
-             'totalBalance'=> $request->xtotalBalance,
-             'notes'=> $request->xnotes,
-             ]);
-          return redirect()->route('balances');
-
-         
+            ['amountDue'=> $request->xamountDue,
+            'totalBalance'=> $request->xtotalBalance,
+            'notes'=> $request->xnotes,
+            ]);
+        return redirect()->route('balances');
     }
 
     /**
@@ -118,10 +84,9 @@ class BalancesController extends Controller
         $balances->delete();
         return redirect()->route('balances');
     }
-    public function getStudentInfo(){
-        
-       $studentinfo = StudentInfo::all();
-       return view('balances.add',compact('studentinfo'));
 
+    public function getStudentInfo(){
+        $studentinfo = StudentInfo::all();
+        return view('balances.add', compact('studentinfo'));
     }
 }
