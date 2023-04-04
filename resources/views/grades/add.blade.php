@@ -29,11 +29,16 @@
                     <input type="text" name="xesNo" value="{{old('xesNo')}}"/>
                     </div>
 </div>
+
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
-                    <div>
-                    <input type="text" name="xsNo" value="{{old('xsNo')}}"/>
-                    </div>
-</div>
+                     <div>  
+                       <select name="xstuno">
+                            @foreach($studentinfo as $stuinfo)
+                            <option value="{{$stuinfo->sno }}"> {{$stuinfo ->idNo}} -- {{$stuinfo->lastName}},{{$stuinfo->firstName}},{{$stuinfo->middleName}}</option>
+                            @endforeach
+                        </select>
+                   </div>
+                </div>
                        <div class="flex-items-center"><label for="Prelim">Prelim</label>
                     <div>
                     <input type="number" precision="3" scale="2" name="xprelim" value="{{old('xprelim')}}"/>

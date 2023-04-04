@@ -21,7 +21,11 @@
                         @csrf
                        <div class="flex-items-center"><label for="Student Number">Student Number</label>
                     <div>
-                        <input type="text" name="xsNo" value="{{old('xsNo')}}"/>
+                        <select name="xstuno">
+                            @foreach($studentinfo as $stuinfo)
+                            <option value="{{$stuinfo->sno }}">{{$stuinfo ->idNo}} -- {{$stuinfo->lastName}},{{$stuinfo->firstName}},{{$stuinfo->middleName}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                     <div class="flex-items-center"><label for="Amount Due">Amount Due</label>

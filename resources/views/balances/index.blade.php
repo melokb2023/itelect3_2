@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
-                <a class="mt-4 bg-teal-200 text-black font-bold py-2 px-4 rounded" href="{{ route('add-balances')}}">Add Balances</a>
+                <a class="mt-4 bg-teal-200 text-black font-bold py-2 px-4 rounded" href="{{ route('add-balance')}}">Add Balances</a>
                     <h6>List of Grades</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
@@ -23,8 +23,8 @@
                         @foreach($balances as $b)
                        <tr>
                         <td>{{$b->sNo }} </td>
-                        <td>{{$b->amountDue }}</td>
-                        <td>{{$b->totalBalance }} </td>
+                        <td>Php{{number_format ($b->amountDue, 2) }}
+                        <td>Php{{number_format ($b->totalBalance, 2) }} </td>
                         <td>{{$b->notes }}</td>
                         <td>
                             <a class="mt-4 bg-teal-200 text-black font-bold py-2 px-4 rounded" href= "{{route('balances-show', ['bNo' => $b->bNo]) }}" >View</a>

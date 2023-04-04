@@ -107,12 +107,12 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
    //GRADES
    
    //Navigate to Form Add Enrolled Subjects
-   Route::get('/grades/add', function () {
-      return view('grades.add');
+  Route::get('/grades/add', function () {
+  return view('grades.add');
   })->middleware(['auth', 'verified'])->name('add-grades');
   
   //Store Student info to create function under StudentInfoController
-  Route::post('/grades/add',[GradesController::class, 'store'] )
+  Route::post('/grades/store',[GradesController::class, 'store'] )
   ->middleware(['auth', 'verified'])
   ->name('grades-store');
   
@@ -140,16 +140,20 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
   Route::patch('/grades/update/{esNo}', [GradesController::class, 'update']) 
      ->middleware(['auth', 'verified'])
      ->name('grades-update');
+
+  Route::get('/grades/add', [GradesController::class, 'getStudentInfo']) 
+    ->middleware(['auth', 'verified'])
+    ->name('add-grades');
   
    //BALANCES
 
    //Navigate to Form Add Enrolled Subjects
-   Route::get('/balances/add', function () {
-      return view('balances.add');
-  })->middleware(['auth', 'verified'])->name('add-balances');
+  // Route::get('/balances/add', function () {
+      //return view('balances.add');
+ // })->middleware(['auth', 'verified'])->name('add-balances');
   
   //Store Student info to create function under StudentInfoController
-  Route::post('/balances/add',[BalancesController::class, 'store'] )
+  Route::post('/balances/store',[BalancesController::class, 'store'] )
   ->middleware(['auth', 'verified'])
   ->name('balances-store');
   
@@ -157,6 +161,10 @@ Route::patch('/students/update/{stuno}', [StudentInfoController::class, 'update'
   Route::get('/balances', [BalancesController::class, 'index']) 
      ->middleware(['auth', 'verified'])
      ->name('balances');
+   
+   Route::get('/balances/add', [BalancesController::class, 'getStudentInfo']) 
+     ->middleware(['auth', 'verified'])
+     ->name('add-balance');
   
   //View Student Info
   Route::get('/balances/{bNo}', [BalancesController::class, 'show']) 

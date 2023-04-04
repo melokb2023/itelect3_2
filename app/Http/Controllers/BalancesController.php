@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Balances;
+use App\Models\StudentInfo;
 
 class BalancesController extends Controller
 {
@@ -15,7 +16,23 @@ class BalancesController extends Controller
      */
     public function index()
     {
-        //$balances = Balances::join('studentinfo', 'balances.sNo', '=', 'studentinfo.sNo')->get();
+        $balances = new Balances;
+       // $studentinfo->course = "BSIT";
+       // $studentinfo->year = 3;
+        //$studentinfo->birthDate = "2001-11-27";
+       // $studentinfo->gender = "Male";
+        
+       // $balances->sno = 5;
+       // $balances->amountDue=250.45;
+       // $balances->totalBalance=0.00;
+        //$balances->notes='Paid';
+        //$balances->save();
+       
+       //  echo "Student information successfully saved in the database";
+
+       
+       
+        //$balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
         $balances = Balances:: all();
         return view('balances.index' , compact('balances'));
     }
@@ -35,14 +52,14 @@ class BalancesController extends Controller
     {
         //
         $validateData =$request->validate([
-            'xsNo' => ['required'],
+            'xsno' =>['required'],
             'xamountDue' =>['required', 'precision:8','scale:2'],
             'xtotalBalance'=>['required', 'precision:8','scale:2'],
             'xnotes' =>['required'],
         ]);
         
         $balances = new Balances();
-        $balances->sNo=$request->xsNo;
+        $balances->sno=$request->xsno;
         $balances->amountDue=$request->xamountDue;
         $balances->totalBalance=$request->xtotalBalance;
         $balances->notes=$request->xnotes;
@@ -56,7 +73,7 @@ class BalancesController extends Controller
      */
     public function show(string $id)
     {
-       // $balances = Balances::join('studentinfo', 'balances.sNo', '=', 'studentinfo.sNo')->get();
+        $balances = Balances::join('studentinfo', 'balances.sno', '=', 'studentinfo.sno')->get();
         $balances = Balances::where('bNo', $id)->get();
         return view('balances.show', compact('balances'));
     }
@@ -104,5 +121,9 @@ class BalancesController extends Controller
         $balances = Balances::where('bNo', $id);
         $balances->delete();
         return redirect()->route('balances');
+    }
+    public function getStudentInfo(){
+        $studentinfo = StudentInfo::all();
+        return view('balances.add',compact('studentinfo'));
     }
 }
